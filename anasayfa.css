@@ -1,0 +1,177 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #9d6cb1;
+    color: #010101;
+   
+ 
+    display: grid;
+    place-items: center;
+    font-family: "Open Sans", sans-serif;
+    transition: background 0.2s ease-out;
+
+}
+
+header{
+    width: 40%;
+    height: 80px;
+    background-color: #333333;
+    box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+}
+
+nav {
+  display: flex;
+  background: #fff;
+  padding: 2rem 3.15rem;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 0.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 30px;
+  position: relative;
+  --hover-bg: #5b37b720;
+  --hover-c: #9959b3;
+}
+
+a svg {
+  margin-right: -2.5rem;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  transition: margin 0.2s ease-out;
+}
+#icontime{
+  background-image: url(time.jpg);
+  background-size: 100%;
+}
+#iconcalendar{
+  background-image: url(calendar.jpg);
+  background-size: 110%;
+}
+#icontodolist{
+  background-image: url(todolist.jpg);
+  background-size: 100%;
+}
+#iconlogin{
+  background-image: url(login.jpg);
+  background-size: 105%;
+}
+a span {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 0.9rem;
+  margin-left: 0.9rem;
+}
+a:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform: translate(0%, -50%) scale(0);
+  visibility: visible;
+  opacity: 1;
+}
+a.active {
+  background: var(--hover-bg);
+  color: var(--hover-c);
+}
+a.active:before {
+  background: var(--hover-c);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0%, -50%) scale(2);
+  transition: all 0.4s ease-out;
+}
+a.active svg {
+  margin-right: 0;
+}
+a.active span {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
+
+@media (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    justify-self: start;
+    border-radius: 0 30px 30px 0;
+    padding: 2rem 1.15rem 2rem 0.75rem;
+  }
+  nav a {
+    margin: 0.5rem 0;
+  }
+  nav svg {
+    margin: 0;
+  }
+}
+
+#panel{
+  background-color:whitesmoke;
+  border-radius: 25px;
+  padding: 20px 10px;
+  margin:50px auto;
+  margin-top: 58px;
+  width: 40%;
+  height: auto;
+  box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+ 
+} 
+#panel h1{
+  font-family: "Roboto Slab";
+  text-shadow: 1px 0 rgb(89, 90, 92), 0 1px rgb(89, 90, 92), 1px 0 rgb(89, 90, 92), 0 -1px rgb(89, 90, 92);
+  text-align: center;
+  margin: 20px;
+}
+input{
+  width: 50%;
+  height: 30px;
+  display: block;
+  margin: auto;
+  border: none;
+  background-color: whitesmoke;
+  border-bottom: 2px solid #4b4949;
+  padding: 0 5px;
+}
+input:focus{
+  outline: 0;
+  width: 60%;
+  transition: 1s;
+  border: 2px solid #4b4949;
+  border-radius: 5px;
+}
+button{
+  margin: auto;
+  width: 120px;
+  height: 40px;
+  display: block;
+  margin-top: 15px;
+  background-color: #4b4949;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 17px;
+}
+button:hover{
+  background-color: rgb(182, 181, 181);
+  color: #3b3a3a;
+  transition: 1s;
+  border: 1px solid #3b3a3a;
+
+}
+

@@ -1,0 +1,222 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #9d6cb1;
+    color: #010101;
+   
+ 
+    display: grid;
+    place-items: center;
+    font-family: "Open Sans", sans-serif;
+    
+    transition: background 0.2s ease-out;
+
+}
+
+header{
+    width: 40%;
+    height: 80px;
+    background-color: #333333;
+    box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+}
+
+nav {
+  display: flex;
+  background: #fff;
+  padding: 2rem 3.15rem;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 0.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 30px;
+  position: relative;
+  --hover-bg: #5b37b720;
+  --hover-c: #9959b3;
+}
+
+
+a svg {
+  margin-right: -2.5rem;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  transition: margin 0.2s ease-out;
+  
+}
+#icontime{
+  background-image: url(time.jpg);
+  background-size: 100%;
+}
+#iconcalendar{
+  background-image: url(calendar.jpg);
+  background-size: 110%;
+}
+#icontodolist{
+  background-image: url(todolist.jpg);
+  background-size: 100%;
+}
+#iconlogin{
+  background-image: url(login.jpg);
+  background-size: 105%;
+}
+
+a span {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 0.9rem;
+  margin-left: 0.9rem;
+}
+
+a:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform: translate(0%, -50%) scale(0);
+  visibility: visible;
+  opacity: 1;
+}
+
+a.active {
+  background: var(--hover-bg);
+  color: var(--hover-c);
+}
+
+a.active:before {
+  background: var(--hover-c);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0%, -50%) scale(2);
+  transition: all 0.4s ease-out;
+}
+
+a.active svg {
+  margin-right: 0;
+}
+
+a.active span {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
+
+
+@media (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    justify-self: start;
+    border-radius: 0 30px 30px 0;
+    padding: 2rem 1.15rem 2rem 0.75rem;
+  }
+
+  nav a {
+    margin: 0.5rem 0;
+  }
+ 
+  nav svg {
+    margin: 0;
+  }
+}
+
+.cont{
+  background-color: rgb(214, 172, 172);
+  padding: 20px 10px;
+  border-radius: 25px;
+  margin:50px auto;
+  margin-top: 58px;
+  width: 40%;
+  height: 500px;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+}
+
+.frame {
+  background:  url(saat.jpg) no-repeat center;
+  background-size: 160%;
+  margin-top: 15px;
+  width: 300px;
+  height: 300px;
+  border: 5px solid #000;
+  border-radius: 100%;
+  position: relative;
+  left: 107px;
+  
+}
+
+.stick {
+  position: absolute;
+  left: 0;
+  bottom: 150px;
+  right: 0;
+  margin: 0 auto;
+  transform-origin: bottom center;
+}
+
+.second {
+  background-color: #222222;
+  width: 2px;
+  height: 135px;
+  z-index: 9;
+  transform-origin: 1px 115px;
+  bottom: 130px;
+}
+
+.second::before {
+  content: "";
+  background-color: #555454;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: -8px;
+}
+
+.minute {
+  background-color: #333;
+  width: 5px;
+  height: 100px;
+  z-index: 8;
+}
+
+.hour {
+  background-color: #000000;
+  width: 5px;
+  height: 80px;
+  z-index: 7;
+}
+
+.fot{
+  display: flex;
+  position: absolute;
+  bottom: 30px;
+  left: 23%;
+}
+.fot h3{
+  color: #654970;
+  margin-left: 8px;
+  font-size: 50px;
+  font-family: "Roboto Slab";
+  font-style: normal; 
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}

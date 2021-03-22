@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="ToDoList.css">
+</head>
+<body>
+    
+  <header>
+    <nav>
+      <a href="anasayfa.html">
+        <svg viewBox="0 0 100 100" id="iconlogin"></svg>
+        <span>
+          Login
+        </span>
+      </a>
+    
+      <a href="takvim.html">
+        <svg viewBox="0 0 100 100" id="iconcalendar"></svg>
+        <span>
+          Calendar
+        </span>
+      </a>
+    
+      <a href="saat.html">
+        <svg viewBox="0 0 100 100" id="icontime"></svg>
+        <span>
+          Time
+        </span>
+      </a>
+    
+      <a class="active" href="ToDoList.html">
+        <svg viewBox="0 0 100 100" id="icontodolist"></svg>
+        <span>
+          ToDoList
+        </span>
+      </a>
+    </nav>
+  </header>
+
+    <div id="panel">
+        <h1>My To Do List</h1>
+        <div id="myDIV" class="header">
+            <input type="text" id="myInput" placeholder="Title...">
+            <button onclick="newElement()" class="addBtn">Add</button>
+        </div>
+          
+          <ul id="myUL">
+            <li>Hit the gym</li>
+            <li>Meet George</li>
+            <li>Buy eggs</li>
+            <li>Read a book</li>
+            <li>Organize office</li>
+          </ul>
+    </div>
+
+   
+
+<script>
+
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+<script>
+
+const navigationOptions = [
+  {
+    name: 'login',
+    color: '#5B37B7'
+  },
+  {
+    name: 'calendar',
+    color: '#C9379D'
+  },
+  {
+    name: 'time',
+    color: '#E6A919'
+  },
+  {
+    name: 'todolist',
+    color: '#1892A6'
+  }
+];
+
+const links = document.querySelectorAll('nav a');
+
+function handleClick(e) {
+
+  e.preventDefault();
+  links.forEach(link => {
+    if (link.classList.contains('active')) {
+      link.classList.remove('active');
+    }
+  });
+
+  const name = this.textContent.trim().toLowerCase();
+  const { color } = navigationOptions.find(item => item.name === name);
+
+  const style = window.getComputedStyle(this);
+  const hoverColor = style.getPropertyValue('--hover-c');
+  if (color !== hoverColor) {
+    this.style.setProperty('--hover-bg', `${color}20`);
+    this.style.setProperty('--hover-c', color);
+  }
+
+  this.classList.add('active');
+  document.querySelector('body').style.background = color;
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

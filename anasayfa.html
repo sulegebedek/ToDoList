@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="anasayfa.css">
+</head>
+<body>
+ 
+  <header>
+    <nav>
+      <a class="active"href="anasayfa.html">
+        <svg viewBox="0 0 100 100" id="iconlogin"></svg>
+        <span>
+          Register
+        </span>
+      </a>
+    
+      <a href="takvim.html">
+        <svg viewBox="0 0 100 100" id="iconcalendar"></svg>
+        <span>
+          Calendar
+        </span>
+      </a>
+    
+      <a href="saat.html">
+        <svg viewBox="0 0 100 100" id="icontime"></svg>
+        <span>
+          Time
+        </span>
+      </a>
+    
+      <a href="ToDoList.html">
+        <svg viewBox="0 0 100 100" id="icontodolist"></svg>
+        <span>
+          ToDoList
+        </span>
+      </a>
+    </nav>
+  </header>
+
+      <div id="panel">
+        <h1>Register</h1>
+        <form>
+            <input type="text" placeholder="Username"><br>
+            <input type="text" placeholder="Name"><br>
+            <input type="text" placeholder="Surname"><br>
+            <input type="email" placeholder="Email"><br>
+            <input type="password" placeholder="Password">
+            <button onclick="alert('Kayıt islemi gerçeklesti')">Register</button>
+            <button><a href="login.html">Login</a></button>
+        </form>
+      
+    </div>
+    
+      <script>
+
+        const navigationOptions = [
+          {
+            name: 'register',
+            color: '#5B37B7'
+          },
+          {
+            name: 'calendar',
+            color: '#C9379D'
+          },
+          {
+            name: 'time',
+            color: '#E6A919'
+          },
+          {
+            name: 'todolist',
+            color: '#1892A6'
+          }
+        ];
+        
+        const links = document.querySelectorAll('nav a');
+        
+        function handleClick(e) {
+
+          e.preventDefault();
+          links.forEach(link => {
+            if (link.classList.contains('active')) {
+              link.classList.remove('active');
+            }
+          });
+        
+          const name = this.textContent.trim().toLowerCase();
+          const { color } = navigationOptions.find(item => item.name === name);
+        
+          const style = window.getComputedStyle(this);
+          const hoverColor = style.getPropertyValue('--hover-c');
+          
+          if (color !== hoverColor) {
+            this.style.setProperty('--hover-bg', `${color}20`);
+            this.style.setProperty('--hover-c', color);
+          }
+        
+          this.classList.add('active');
+          document.querySelector('body').style.background = color;
+        }
+               
+        
+        </script> 
+   
+    
+</body>
+</html>

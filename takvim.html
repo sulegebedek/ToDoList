@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="takvim.css">
+</head>
+<body onload="renderDate()">
+    
+  <header>
+    <nav>
+      <a href="anasayfa.html">
+        <svg viewBox="0 0 100 100" id="iconlogin"></svg>
+        <span>
+          Login
+        </span>
+      </a>
+    
+      <a class="active" href="takvim.html">
+        <svg viewBox="0 0 100 100" id="iconcalendar"></svg>
+        <span>
+          Calendar
+        </span>
+      </a>
+    
+      <a href="saat.html">
+        <svg viewBox="0 0 100 100" id="icontime"></svg>
+        <span>
+          Time
+        </span>
+      </a>
+    
+      <a href="ToDoList.html">
+        <svg viewBox="0 0 100 100" id="icontodolist"></svg>
+        <span>
+          ToDoList
+        </span>
+      </a>
+    </nav>
+  </header>
+
+        <div class="calendar">
+            <div class="month">
+                <div class="prev" onclick="moveDate('prev')">
+                    <span>&#10094;</span>
+                </div>
+                <div>
+                    <h2 id="month"></h2>
+                    <p id="date_str"></p>
+                </div>
+                <div class="next" onclick="moveDate('next')">
+                    <span>&#10095;</span>
+                </div>
+            </div>
+            <div class="weekdays">
+                <div>Paz</div>
+                <div>Pzt</div>
+                <div>Sal</div>
+                <div>Çar</div>
+                <div>Per</div>
+                <div>Cum</div>
+                <div>Cmt</div>
+            </div>
+            <div class="days">
+
+            </div>
+        </div>
+   
+    <script>
+        
+        var dt = new Date();
+        function renderDate() {
+            dt.setDate(1);
+            var day = dt.getDay();
+            var today = new Date();
+            var endDate = new Date(
+                dt.getFullYear(),
+                dt.getMonth() + 1,
+                0
+            ).getDate();
+
+            var prevDate = new Date(
+                dt.getFullYear(),
+                dt.getMonth(),
+                0
+            ).getDate();
+            var months = [
+                "Ocak",
+                "Şubat",
+                "Mart",
+                "Nisan",
+                "Mayıs",
+                "Haziran",
+                "Temmuz",
+                "Ağustos",
+                "Eylül",
+                "Ekim",
+                "Kasım",
+                "Aralık"
+            ]
+            
+            document.getElementById("month").innerHTML = months[dt.getMonth()];
+            document.getElementById("date_str").innerHTML = dt.toLocaleDateString();
+
+            var cells = "";
+            for (x = day; x > 0; x--) {
+                cells += "<div class='prev_date'>" + (prevDate - x + 1) + "</div>";
+            }
+            console.log(day);
+            for (i = 1; i <= endDate; i++) {
+                if (i == today.getDate() && dt.getMonth() == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
+                else
+                    cells += "<div>" + i + "</div>";
+            }
+            document.getElementsByClassName("days")[0].innerHTML = cells;
+
+        }
+
+        function moveDate(para) {
+            if(para == "prev") {
+                dt.setMonth(dt.getMonth() - 1);
+            } else if(para == 'next') {
+                dt.setMonth(dt.getMonth() + 1);
+            }
+            renderDate();
+        }
+    </script>
+
+<script>
+
+const navigationOptions = [
+  {
+    name: 'login',
+    color: '#5B37B7'
+  },
+  {
+    name: 'calendar',
+    color: '#C9379D'
+  },
+  {
+    name: 'time',
+    color: '#E6A919'
+  },
+  {
+    name: 'todolist',
+    color: '#1892A6'
+  }
+];
+
+const links = document.querySelectorAll('nav a');
+
+function handleClick(e) {
+
+  e.preventDefault();
+  links.forEach(link => {
+    if (link.classList.contains('active')) {
+      link.classList.remove('active');
+    }
+  });
+
+  const name = this.textContent.trim().toLowerCase();
+  const { color } = navigationOptions.find(item => item.name === name);
+
+  const style = window.getComputedStyle(this);
+  const hoverColor = style.getPropertyValue('--hover-c');
+  
+  if (color !== hoverColor) {
+    this.style.setProperty('--hover-bg', `${color}20`);
+    this.style.setProperty('--hover-c', color);
+  }
+
+  this.classList.add('active');
+  document.querySelector('body').style.background = color;
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

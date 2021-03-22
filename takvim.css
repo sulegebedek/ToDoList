@@ -1,0 +1,217 @@
+
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #9d6cb1;
+    color: #010101;
+   
+    display: grid;
+    place-items: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+header{
+    width: 40%;
+    height: 80px;
+    background-color: #333333;
+    box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+}
+
+nav {
+  display: flex;
+  background: #fff;
+  padding: 2rem 3.15rem;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 0.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 30px;
+  position: relative;
+  --hover-bg: #5b37b720;
+  --hover-c: #9959b3;
+}
+
+a svg {
+  margin-right: -2.5rem;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  transition: margin 0.2s ease-out;
+}
+#icontime{
+  background-image: url(time.jpg);
+  background-size: 100%;
+}
+#iconcalendar{
+  background-image: url(calendar.jpg);
+  background-size: 110%;
+}
+#icontodolist{
+  background-image: url(todolist.jpg);
+  background-size: 100%;
+}
+#iconlogin{
+  background-image: url(login.jpg);
+  background-size: 105%;
+}
+a span {
+  opacity: 0;
+  visibility: hidden;
+  font-size: 0.9rem;
+  margin-left: 0.9rem;
+}
+a:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform: translate(0%, -50%) scale(0);
+  visibility: visible;
+  opacity: 1;
+}
+a.active {
+  background: var(--hover-bg);
+  color: var(--hover-c);
+}
+a.active:before {
+  background: var(--hover-c);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(0%, -50%) scale(2);
+  transition: all 0.4s ease-out;
+}
+a.active svg {
+  margin-right: 0;
+}
+a.active span {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
+
+@media (max-width: 500px) {
+  nav {
+    flex-direction: column;
+    justify-self: start;
+    border-radius: 0 30px 30px 0;
+    padding: 2rem 1.15rem 2rem 0.75rem;
+  }
+  nav a {
+    margin: 0.5rem 0;
+  }
+  nav svg {
+    margin: 0;
+  }
+}
+
+.calendar {
+    margin: 50px auto;
+    height: auto;
+    width: 40%;
+    border-radius: 25px;
+    background-color: #fff;
+    margin-top: 50px;
+    box-shadow: 0 -0px 20px 6px rgb(0, 0, 0);
+    margin-top: 58px;
+}
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 40px 30px;
+    text-align: center;
+    font-family: "Roboto Slab";
+    text-shadow: 1px 0 rgb(54, 66, 100), 0 1px rgb(54, 66, 100), 1px 0 rgb(54, 66, 100), 0 -1px rgb(54, 66, 100);
+    font-size: 25px;
+    background-color: #4a9abe;
+    color: #fff;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.weekdays {
+    background-color: #4587a5;
+    color: #fff;
+    padding: 7px 0;
+    display: flex;
+    
+}
+
+.days {
+  
+    font-weight: 300;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.weekdays div,
+.days div {
+    font-family: "Roboto Slab";
+    font-size: 20px;
+    text-align: center;
+    width: 14.28%;
+}
+
+.days div {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    transition: all 0.4s;
+}
+
+.prev_date {
+    color: #999;
+}
+
+.today {
+    background-color: #4a9abe;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.days div:hover {
+    cursor: pointer;
+    background-color: #dfe6e9
+}
+
+.prev,
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.prev:hover,
+.next:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#month {
+    font-family: "Roboto Slab";
+    text-shadow: 1px 0 rgb(54, 66, 100), 0 1px rgb(54, 66, 100), 1px 0 rgb(54, 66, 100), 0 -1px rgb(54, 66, 100);
+    font-size: 40px;
+    font-weight: 500;
+}

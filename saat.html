@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="saat.css">
+</head>
+<body>
+ 
+  <header>
+    <nav>
+      <a href="anasayfa.html">
+        <svg viewBox="0 0 100 100" id="iconlogin"></svg>
+        <span>
+          Login
+        </span>
+      </a>
+    
+      <a href="takvim.html">
+        <svg viewBox="0 0 100 100" id="iconcalendar"></svg>
+        <span>
+          Calendar
+        </span>
+      </a>
+    
+      <a class="active" href="saat.html">
+        <svg viewBox="0 0 100 100" id="icontime"></svg>
+        <span>
+          Time
+        </span>
+      </a>
+    
+      <a href="ToDoList.html">
+        <svg viewBox="0 0 100 100" id="icontodolist"></svg>
+        <span>
+          ToDoList
+        </span>
+      </a>
+    </nav>
+  </header>
+        
+    <div class="cont">
+      <div class="frame">
+        <div class="stick minute"></div>
+        <div class="stick hour"></div>
+        <div class="stick second"></div>
+      </div>
+  
+      <div class="fot">
+        <h3 class="ay">0</h3>&nbsp;
+        <h3 class="aylar">0</h3>&nbsp;
+        <h3> 2021</h3>
+      </div>
+    </div>
+  
+    
+    <script>
+
+        const navigationOptions = [
+          {
+            name: 'login',
+            color: '#5B37B7'
+          },
+          {
+            name: 'calendar',
+            color: '#C9379D'
+          },
+          {
+            name: 'time',
+            color: '#E6A919'
+          },
+          {
+            name: 'todolist',
+            color: '#1892A6'
+          }
+        ];
+        
+        
+        const links = document.querySelectorAll('nav a');
+        
+        
+        function handleClick(e) {
+         
+          e.preventDefault();
+          links.forEach(link => {
+            if (link.classList.contains('active')) {
+              link.classList.remove('active');
+            }
+          });
+        
+          
+          const name = this.textContent.trim().toLowerCase();
+          const { color } = navigationOptions.find(item => item.name === name);
+        
+          const style = window.getComputedStyle(this);
+          const hoverColor = style.getPropertyValue('--hover-c');
+          
+          if (color !== hoverColor) {
+            this.style.setProperty('--hover-bg', `${color}20`);
+            this.style.setProperty('--hover-c', color);
+          }
+        
+         
+          this.classList.add('active');
+          document.querySelector('body').style.background = color;
+        }
+    </script>
+
+    <script>
+          
+        const clock = (function(){
+          const second = document.querySelector(".frame .second");
+          const minute = document.querySelector(".frame .minute");
+          const hour = document.querySelector(".frame .hour");
+
+          const now = new Date();
+          let secondDeg = now.getSeconds() * 6; 
+          let minuteDeg = now.getMinutes() * 6; 
+          let hourDeg = (now.getHours() * 30) + (minuteDeg / 60); 
+
+    
+          rotate(second, secondDeg);
+          rotate(minute, minuteDeg);
+          rotate(hour, hourDeg);
+
+          tick(); 
+          setInterval(tick, 1000);
+
+          function tick() {
+              rotate(second, secondDeg);
+              secondDeg = (secondDeg + 6) % 360;
+
+              if(secondDeg === 0) {
+                rotate(minute, minuteDeg);
+                rotate(hour, hourDeg);
+
+                minuteDeg = (minuteDeg + 6) % 360;
+                hourDeg = (hourDeg + (6/60)) % 360;
+              }
+          }
+
+          function rotate(el, deg) {
+              el.style.transform = `rotateZ(${deg}deg)`;
+          }
+        })();
+         
+        </script>
+
+        <script>
+          var aykac= new Date().getDate();
+          var ay = document.querySelectorAll(".ay");
+          ay.forEach(function(item){
+            item.textContent=aykac;
+          });
+          switch( new Date().getMonth()+1){
+            case 1:   day=" Ocak ";     break;
+            case 2:   day=" Şubat ";    break;
+            case 3:   day=" Mart ";     break;
+            case 4:   day=" Nisan ";    break;
+            case 5:   day=" Mayıs ";    break;
+            case 6:   day=" Haziran ";  break;
+            case 7:   day=" Temmuz ";   break;
+            case 8:   day=" Ağustos ";  break;
+            case 9:   day=" Eylül ";    break;
+            case 10:  day=" Ekim ";     break;
+            case 11:  day=" Kasım ";    break;
+            case 12:  day=" Aralık ";   break;
+          }
+          var aylar=document.querySelectorAll(".aylar");
+          aylar.forEach(function(item){
+            item.textContent=day;
+          });
+          
+          
+        </script>
+
+</body>
+</html>
